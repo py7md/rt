@@ -1,12 +1,13 @@
 buildscript {
-    ext.kotlin_version = '1.8.22'
+    ext.kotlin_version = '1.9.0' // تم تحديث نسخة Kotlin لتتوافق مع الإصدارات الأحدث
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        // تحديث إصدار Gradle ليكون متوافقاً مع Flutter SDK الحديث
+        classpath 'com.android.tools.build:gradle:8.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
