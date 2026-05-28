@@ -20,11 +20,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Flutter
+     - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.10.0' # يمكنك تجربة نسخة أقدم إذا كانت النسخة الحديثة لا تتوافق
+          flutter-version: '3.22.0' # استخدم هذا الإصدار الأحدث والأكثر استقراراً
 
       - name: Install Dependencies
         run: flutter pub get
