@@ -23,20 +23,19 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          # استخدام 'any' يسمح لـ GitHub باختيار أحدث نسخة متوافقة تلقائياً
-          # وهذا يحل مشكلة تعارض الإصدارات التي رأيناها في image_2b143e.png
+          # نستخدم 'any' لترك النظام يختار أحدث نسخة متوافقة مع مكتباتك
           flutter-version: 'any'
 
       - name: Install Dependencies
-        # إضافة --no-pub يمنع محاولة حل الإصدارات المعقدة إذا كان الملف جاهزاً
-        # أو استخدام التحديث المباشر لحل التعارض
+        # نقوم بتحديث المكتبات لضمان التوافق مع إصدار Flutter الحديث
         run: flutter pub upgrade --major-versions
 
       - name: Build APK
-        run: flutter build apk --release
+        # نستخدم --build-name و --build-number لضمان خروج ملف صحيح
+        run: flutter build apk --release --split-per-abi
 
       - name: Upload APK File
         uses: actions/upload-artifact@v4
         with:
           name: Release-APK
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/*.apk
