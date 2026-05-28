@@ -9,7 +9,6 @@ jobs:
   build:
     name: Build APK
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -24,15 +23,12 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          # استخدام 'any' يضمن توافق SDK مع أحدث المكتبات تلقائياً
-          flutter-version: 'any'
+          flutter-version: '3.19.0'
 
       - name: Install Dependencies
-        # إضافة --major-versions لحل تعارض إصدارات المكتبات في pubspec.lock
-        run: flutter pub upgrade --major-versions
+        run: flutter pub get
 
       - name: Build APK
-        # استخدام صيغة البناء القياسية
         run: flutter build apk --release
 
       - name: Upload APK File
