@@ -23,10 +23,14 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.22.0'
+          # استخدام 'any' يسمح لـ GitHub باختيار أحدث نسخة متوافقة تلقائياً
+          # وهذا يحل مشكلة تعارض الإصدارات التي رأيناها في image_2b143e.png
+          flutter-version: 'any'
+
       - name: Install Dependencies
-        # إضافة خيار التحديث لضمان الحصول على أحدث الإصدارات المتوافقة
-        run: flutter pub upgrade
+        # إضافة --no-pub يمنع محاولة حل الإصدارات المعقدة إذا كان الملف جاهزاً
+        # أو استخدام التحديث المباشر لحل التعارض
+        run: flutter pub upgrade --major-versions
 
       - name: Build APK
         run: flutter build apk --release
