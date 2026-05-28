@@ -23,10 +23,12 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          # استخدام إصدار محدد يضمن توافق المكتبات التي تتطلب SDK 3.4.0+
           flutter-version: '3.22.0'
 
       - name: Install Dependencies
-        run: flutter pub get
+        # إضافة خيار التحديث لضمان الحصول على أحدث الإصدارات المتوافقة
+        run: flutter pub upgrade
 
       - name: Build APK
         run: flutter build apk --release
